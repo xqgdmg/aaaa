@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+//      ReactDOM.render(
+//        <h1>Hello, world!</h1>,
+//        document.getElementById('root')
+//      );
+
+// jsx，ES6
+// jsx就是js与标签结合的一种格式，React发明了JSX
+// jsx不是新语法，他是js的语法拓展
+//      const element = <h1>Hello, world!</h1>;
+//      let div = document.getElementById('root');
+//      ReactDOM.render(element,div);
+
+  // const和let的区别 以及跟var有什么关系
+// let与var的相同点：都是定义变量。不同点：但var太过于灵活，
+// 即使在业务逻辑中定义两个相同的变量也不会有问题
+// let则避免了这个问题，一但定义两个相同的变量，会帮你指出错误
+// const常量，一旦你定义之后就必须赋值，而且无法改变
+
+//     window.onload = function test() {
+////          var x = 100;
+////          var x = 1000;
+//          let xx = 100;
+////          let xx = 1000;
+//         const xxx = 100;
+////           xxx = 1000;
+//      }
+
+      // jsx如何创建对象
+//const element = (<h1 className="greeting">Hello world</h1>) ;
+
+      // 写一个例子 证明React比js高效
+//      function tick(){
+//          const element = (
+//              <div>
+//                <h1>Hello world</h1>
+//                <h2>It is {new Date().toLocaleString()}</h2>
+//              </div>
+//          );
+//          ReactDOM.render(element,document.getElementById("root"));
+//      }
+//      // window对象提供的方法：每隔多少秒去调用一次函数
+//      setInterval(tick,1000);
+
+//      function tick2(){
+//          var time = new Date().toLocaleString();
+//          var st = "<div><h1>Hello world</h1><h2>It is "+time+"</h2></div>";
+//          document.getElementById("root").innerHTML = st;
+//      }
+//      setInterval(tick2,1000);
+
+      // 组件
+//      function Person(props){
+//          return <h1>Hello,{props.name}</h1>;
+//      }
+      // ES6的方式来定义一个组件
+//      class Person extends React.Component{
+//          render(){
+//              return <h1>Hello,{this.props.name}</h1>;
+//          }
+//      }
+      // 特别注意 React在执行的时候，遇到开始标签<以及小写字母开头，就会将其当做DOM标签
+      // 遇到开始标签<以及大写字母开头，则表示要去请求组件（函数）
+      // 定义组件时，一定要记得 大写字母 开头
+//      let ele = <Person name="This is River"/>
+//      ReactDOM.render(ele,document.getElementById("root"));
+
+      // 定义一个需求：打印三个不同的人说Hello
+//      class Person extends React.Component{
+//          render(){
+//              return <h1>Hello,{this.props.name}</h1>;
+////              return <img src="your avator url">
+//          }
+//      }
+//      function CallName(){
+//          return (
+//                  <div>
+//                    <Person name="River"/>
+//                    <Person name="Simon"/>
+//                    <Person name="David"/>
+//                  </div>
+//          );
+//      }
+//      ReactDOM.render(<CallName/>,document.getElementById("root"));
+      // Don’t be afraid to split components into smaller components.
+
+
+      // 无论你的组件声明为函数还是类，他都不能修改props
+//      function sum(a,b){ // 纯函数
+//          return a+b;
+//      }
+//      function withdraw(account,amount){ // 非纯函数
+//          account.total += amount;
+//      }
+      // state
+//      function tick(){
+//          const element = (
+//              <div>
+//                <h1>Hello world</h1>
+//                <h2>It is {new Date().toLocaleString()}</h2>
+//              </div>
+//          );
+//          ReactDOM.render(element,document.getElementById("root"));
+//      }
+
+
+      // 封装时钟
+//      function Clock(props){
+//          return(
+//                  <div>
+//                    <h1>Hello world</h1>
+     //               <h2>It is {props.date.toLocaleString()}</h2>
+//                  </div>
+//          );
+//      }
+
+//      function tick(){
+//          ReactDOM.render(
+          //    <Clock date={new Date()}/>,
+//              document.getElementById("root")
+//          );
+//      }
+//    setInterval(tick,1000);
+
+      // 用类的方式封装组件
+      class Clock extends React.Component{
+          constructor(props){
+              super(props);// 在类组件里，这句话要加
+              this.state = {date : new Date()}
+          }
+          tick(){
+            this.setState({
+                date:new Date()
+            });
+          }
+          componentDidMount(){
+            this.timerID = setInterval(
+                ()=> this.tick(),
+                1000);
+          }
+          componentWillUnmount(){
+            clearInterval(this.timerID)
+          }
+          render(){
+              return (
+                      <div>
+                        <h1>Hello world</h1>
+                        <h2>It is {this.state.date.toLocaleString()}</h2>
+                      </div>
+              );
+          }
+      }
+      ReactDOM.render(<Clock/>,document.getElementById("root"));
+
+
+    </script>
+    <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      Read this section for a production-ready setup with JSX:
+      https://reactjs.org/docs/add-react-to-a-website.html#add-jsx-to-a-project
+
+      In a larger project, you can use an integrated toolchain that includes JSX instead:
+      https://reactjs.org/docs/create-a-new-react-app.html
+
+      You can also use React without JSX, in which case you can remove Babel:
+      https://reactjs.org/docs/react-without-jsx.html
+    -->
+  </body>
+</html>
