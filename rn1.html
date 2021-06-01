@@ -1,0 +1,144 @@
+<htm>
+
+<head>
+    
+    </head>
+    <style>
+        
+        #spanone{
+            display: block;
+            width: 100px;
+            background: red;
+        }
+        
+        *{
+           padding: 50px; 
+        }
+        
+        .lie{
+          background: red;
+            border: solid 1px;
+            border-bottom-color: blue;
+            border-top-color: chartreuse;
+        }
+        
+    </style>
+    
+    <script>
+        var x = 1;
+        var xx = "这是个字符串";
+        var cars=new Array();
+        cars[0]="Audi";
+        cars[1]="BMW";
+        cars [2] ="Volvo";
+        
+        var p = new Object();
+        p.name = "jack";
+        p.age = 20;
+        p.sayName = function(){
+//        alert(this.name);
+        }
+        
+        function Person(name,age){
+            this.name = name;
+            this.age = age;
+            this.sayName = function(){
+                alert(this.name);
+            }
+        }
+        Person.prototype.sayHello = function () {
+            console.log( '你好, 我是 ' + this.name );
+        };
+        
+        // 闭包
+        function f1(){
+            var n=1000;
+            function f2(){
+                alert(n);
+            }
+            return f2;
+        }
+//        var result = f1(); 
+//        var result =1;
+//        result(); // 100
+
+        function test(){
+//            var p = new Person("x",20);
+//            var p1 = new Person("xx",18);
+//            alert(p.sayHello == p1.sayHello);
+            
+//                var p = new Person("jack",20);
+//                alert(p instanceof Person);
+            }
+        
+//        function SuperType(){
+//            this.colors = ["red","green","blue"];
+//        }
+//
+//        function SubType(){
+//            this.clo = "1222";
+//        }
+//        //继承了SuperType 
+//        SubType.prototype = new SuperType();
+//
+//        var instance2 = new SubType();
+//        alert(instance2.colors);
+        
+        function changeText(){
+            var div1 = document.getElementById("div1");
+            div1.style.background = "red";
+            div1.style.width = "200px";
+            div1.style.height = "200px";
+        }
+        
+        function addTrTdToTable(){
+//            var mytable = document.getElementById("mytable");
+//            var str1 = "";
+//            for(var i =0; i< 5 ;i++){
+//               var str = "<tr><td class='lie'>第一行第一列</td><td class='lie'>第一行第二列</td>"+
+//            "<td class='lie'>第一行第三列</td></tr>"
+//               str1 = str1+=str;
+//            }
+//            mytable.innerHTML = str1;
+            
+            var div1 = document.getElementById("div1");
+            var children = div1.firstElementChild;
+            children.style.width = "200px";
+           
+        }
+
+    </script>
+    
+   <body onload="test()">
+       <div id="div1">
+           
+           <img  src="http://img5q.duitang.com/uploads/item/201504/18/20150418H3406_3zMUy.jpeg">
+       
+       </div>
+    
+        <span id="spanone" onclick="addTrTdToTable()">第一个span</span>
+        <span>第二个span</span>
+       
+       <table id="mytable">
+        <tr>
+            <td class="lie">第一行第一列</td>
+            <td class="lie">第一行第二列</td>
+            <td class="lie">第一行第三列</td>
+           </tr>
+            <tr>
+            <td class="lie">第二行第一列</td>
+            <td class="lie">第二行第二列</td>
+            <td class="lie">第二行第三列</td>
+           </tr>
+       </table>
+       
+       <img  src="http://img5q.duitang.com/uploads/item/201504/18/20150418H3406_3zMUy.jpeg"
+            width="500px;" height="300px;">
+       
+       <input value="内容">
+       <button value="">提交</button>
+       
+    </body>
+    
+</htm>
+
